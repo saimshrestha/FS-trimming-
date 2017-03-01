@@ -1,7 +1,7 @@
-##Filesystem trimming: Linux On Azure  ( Premium storage-SSD)
-#WHAT IS TRIMMING?
+#Filesystem trimming: Linux On Azure  ( Premium storage-SSD)
+##WHAT IS TRIMMING?
 A trim command (known as TRIM in the ATA command set, and UNMAP in the SCSI command set) allows an operating system to inform a solid-state drive (SSD) which blocks of data are no longer considered in use and can be wiped internally.
-		- wikipedia
+		> wikipedia
 
 SSD drives are composed of groups of Flash (NAND) memory cells. Three major differences from traditional magnetic disks can affect the performance of SSD drives:
 
@@ -22,13 +22,14 @@ we can enable TRIM in two ways on a linux VM:
 1. Continuous TRIM - by setting a mount option discard flag on the /etc/fstab file – do you know if this has some implementation of ionice (what priority is assigned if there is contention for IO)
 2. Periodic TRIM – using cron to run a fstrim on the file system.
 
-#TRIMMING on Linux vms In Azure 
+##TRIMMING on Linux vms In Azure 
 
-Both ways are possible in azure and yes Continuous TRIM might seem easier. However, it is recommended to use periodic trimming as certain applications could have performance implications. ( this would totally depend upon the type of application being used)
+Both ways are possible in azure and yes Continuous TRIM might seem easier. However, it is recommended to use periodic trimming as certain applications could have performance implications. This would entirely depend upon the type of application being used.
 Refer to the following links on how to implement it:
-	https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-classic-attach-disk
 
-	https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-configure-lvm
+	[implement FS trim in linux vms on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-classic-attach-disk/)
+
+	[Implement FS trim in linux vms on azure- lvm](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-configure-lvm/)
 
 On CentOS-7+ the fstrim.service and associated systemd timer is disabled by default, so you will need to enable the service and probably override the default timer schedule as well.
 
