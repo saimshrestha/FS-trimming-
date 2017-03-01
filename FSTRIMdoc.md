@@ -1,7 +1,8 @@
 #Filesystem trimming: Linux On Azure  ( Premium storage-SSD)
 ##WHAT IS TRIMMING?
-A trim command (known as TRIM in the ATA command set, and UNMAP in the SCSI command set) allows an operating system to inform a solid-state drive (SSD) which blocks of data are no longer considered in use and can be wiped internally.
-		> wikipedia
+A trim command (known as TRIM in the ATA command set, and UNMAP in the SCSI command set) allows an operating system to inform a solid-state drive (SSD) which blocks of data are no longer considered in use and can be wiped internally:
+
+> wikipedia
 
 SSD drives are composed of groups of Flash (NAND) memory cells. Three major differences from traditional magnetic disks can affect the performance of SSD drives:
 
@@ -25,11 +26,12 @@ we can enable TRIM in two ways on a linux VM:
 ##TRIMMING on Linux vms In Azure 
 
 Both ways are possible in azure and yes Continuous TRIM might seem easier. However, it is recommended to use periodic trimming as certain applications could have performance implications. This would entirely depend upon the type of application being used.
-Refer to the following links on how to implement it:
+Refer to the following links on how to implement it
 
-	[implement FS trim in linux vms on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-classic-attach-disk/)
+* [impement fstrim in linux systems on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-classic-attach-disk)
 
-	[Implement FS trim in linux vms on azure- lvm](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-configure-lvm/)
+* [Implement fstrim in linux systems on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-configure-lvm)
+	
 
 On CentOS-7+ the fstrim.service and associated systemd timer is disabled by default, so you will need to enable the service and probably override the default timer schedule as well.
 
@@ -44,4 +46,5 @@ In short,
 
 
 Additional detailed references:
+
 https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
