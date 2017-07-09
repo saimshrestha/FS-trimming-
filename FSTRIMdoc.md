@@ -20,7 +20,7 @@ Improves the efficiency of GC due to more free space available
 Basically, SSD drives will operate faster if the filesystem passes information to them about files that have been deleted.
 
 we can enable TRIM in two ways on a linux VM:
-1. Continuous TRIM - by setting a mount option discard flag on the /etc/fstab file – do you know if this has some implementation of ionice (what priority is assigned if there is contention for IO)
+1. Continuous TRIM - by setting a mount option discard flag on the /etc/fstab fil
 2. Periodic TRIM – using cron to run a fstrim on the file system.
 
 ##TRIMMING on Linux vms In Azure 
@@ -29,8 +29,6 @@ Both ways are possible in azure and yes Continuous TRIM might seem easier. Howev
 Refer to the following links on how to implement it
 
 * [impement fstrim in linux systems on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-classic-attach-disk)
-
-* [Implement fstrim in linux systems on azure](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-configure-lvm)
 	
 
 On CentOS-7+ the fstrim.service and associated systemd timer is disabled by default, so you will need to enable the service and probably override the default timer schedule as well.
